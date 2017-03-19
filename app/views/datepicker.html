@@ -1,0 +1,70 @@
+<div class='datepicker-wrapp'>
+    <input
+            class="date"
+            placeholder="Ввод даты и времени"
+            ng-click="showPicker=!showPicker"
+            ng-model="result"
+            ng-value="result || Date.getFullDate()"
+            type='text'
+            name='{{name}}'
+            id='{{id}}'>
+    <div ng-show="showPicker" class="main-picker-box">
+        <div class="picker-head clearfix">
+            <div class="top-results f-date">
+                {{Date.getFullDate()}}
+            </div>
+            <div class="top-results time">
+                <input
+                        class="time-input"
+                        type="number"
+                        ng-model="Date.selectedTime.timeHours"
+                        ng-value="Date.selectedTime.timeHours | timeStep" min="0" max="24" step="01">
+                :
+                <input
+                        class="time-input"
+                        type="number"
+                        ng-model="Date.selectedTime.timeMinutes"
+                        ng-value="Date.selectedTime.timeMinutes | timeStep">
+            </div>
+        </div> <!-- end picker head -->
+
+        <div class="picker-body">
+            <div class="time-nav clearfix">
+                <a ng-click="Date.prevMonth()" href="" class="month-arrow prev-month"> < </a>
+                <span>{{Date.getCurrentVisibleDate()}}</span>
+                <a ng-click="Date.nextMonth()" href="" class="month-arrow next-month"> > </a>
+            </div>
+            <div class="week names clearfix">
+                <span class="day day-head">Пн</span>
+                <span class="day day-head">Вт</span>
+                <span class="day day-head">Ср</span>
+                <span class="day day-head">Чт</span>
+                <span class="day day-head">Пт</span>
+                <span class="day day-head">Сб</span>
+                <span class="day day-head">Вс</span>
+            </div>
+            <div class="clearfix">
+                <div ng-repeat="day in days">
+                    <div class="day day-pick"
+                         ng-if="(day + 1 > Date.startDay()) && (day - Date.startDay() < monthDays[Date.month])"
+                         ng-click="Date.selectDate(day + 1 - Date.startDay())"
+                         ng-class="{'selected' : Date.selectedDate.getDate() === day + 1 - Date.startDay() && Date.selectedDate.getMonth() === Date.month}">
+                        {{day + 1 - Date.startDay()}}
+                    </div>
+                    <div class="day day-fake"
+                         ng-if="(day + 1 <= Date.startDay()) || (day - Date.startDay() >= monthDays[Date.month])"></div>
+                </div>
+            </div>
+
+            <div class="bottom-btns clearfix">
+                <a
+                        ng-click="showPicker = false; Date.selectedDate = null"
+                        href="" class="cancel">Отменить</a>
+                <a
+                        ng-disabled="!Date.selectedDate"
+                        ng-click="Date.selectedDate ? showPicker = false : ''"
+                        href="" class="accept"></a>
+            </div>
+        </div> <!-- end picker body -->
+    </div>
+</div>

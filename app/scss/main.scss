@@ -1,0 +1,143 @@
+$blue: #4cc1fc;
+
+body {
+  background: #fff;
+  position: relative;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.clearfix {
+  display: block;
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+.content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.datepicker-wrapp {
+  width: 325px;
+  position: relative;
+  .main-picker-box {
+    box-shadow: 0px 3px 4px 2px rgba(0, 0, 0, .3);
+  }
+  .picker-head {
+    padding: 15px;
+    background: #fcfcfc;
+    border-bottom: 1px solid #ccc;
+    .top-results {
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 5px 1px;
+      min-height: 18px;
+      border-radius: 5px;
+      .time-input {
+        width: 32px;
+        background: none;
+        outline: none;
+        border: none;
+      }
+      &.f-date {
+        width: 62%;
+      }
+      &.time {
+        width: 33%;
+      }
+    }
+  }
+
+  .time-nav {
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    .month-arrow {
+      padding: 3px 10px;
+      font-size: 24px;
+      line-height: 24px;
+      text-decoration: none;
+      position: absolute;
+      color: $blue;
+      top: 5px;
+      &:hover {
+        background: rgba(76, 193, 252, .2);
+        transition: background .3s;
+      }
+      &.prev-month {
+        left: 10px;
+      }
+      &.next-month {
+        right: 10px;
+      }
+    }
+  }
+  .picker-body {
+    padding: 15px;
+    background: #fcfcfc;
+  }
+  .date {
+    border: 3px solid $blue;
+    border-radius: 5px;
+    padding: 10px 5px;
+  }
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  .day {
+    width: 40px;
+    height: 30px;
+    float: left;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin-left: -1px;
+    margin-bottom: -1px;
+    font-size: 16px;
+    line-height: 30px;
+    transition: background .3s;
+    &.day-pick {
+      cursor: pointer;
+      &.selected {
+        background: #7bca5c;
+        color: #fff;
+      }
+      &:hover {
+        color: #fff;
+        background: $blue;
+      }
+    }
+    &.day-head {
+      border: 1px solid transparent;
+    }
+  }
+  .bottom-btns {
+    padding: 10px 3px;
+    .cancel {
+      text-decoration: none;
+      color: #d6d7d9;
+      border-bottom: 1px dashed #d6d7d9;
+      margin-top: 5px;
+      display: inline-block;
+    }
+    .accept {
+      &[disabled] {
+        cursor: no-drop;
+      }
+      float: right;
+      width: 30px;
+      height: 30px;
+      background: url("../img/accept-icon.png") no-repeat center / cover;
+    }
+  }
+}
